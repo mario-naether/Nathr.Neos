@@ -1,0 +1,20 @@
+{namespace neoscr=Neos\ContentRepository\ViewHelpers}
+{namespace fs=Neos\Fusion\ViewHelpers}
+
+<div class="list-news-plugin" xmlns:f="http://www.w3.org/1999/html">
+    <section class="news sw">
+        <header>
+            <strong>
+                {headline}
+            </strong>
+        </header>
+
+            <neoscr:widget.paginate nodes="{newsCollection}" as="paginatedNewsItems" widgetId="listable-paginate" configuration="{paginationConfig}">
+                <ul class="content">
+                    <f:for each="{paginatedNewsItems}" as="news" iteration="iterator">
+                        <fs:render path="itemRenderer" context="{newsItem: news, iterator: iterator}" />
+                    </f:for>
+                </ul>
+            </neoscr:widget.paginate>
+    </section>
+</div>

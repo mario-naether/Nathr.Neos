@@ -1,0 +1,16 @@
+'Nathr.News:Tag':
+  superTypes:
+   'Neos.Neos:Document': TRUE
+   'Neos.Seo:SeoMetaTagsMixin': FALSE
+   'Neos.Seo:TwitterCardMixin': FALSE
+   'Neos.Seo:CanonicalLinkMixin': FALSE
+   'Neos.Seo:OpenGraphMixin': FALSE
+   'Neos.Seo:XmlSitemapMixin': FALSE
+  constraints:
+    nodeTypes:
+      '*': false
+  ui:
+    label: 'News Tag'
+    icon: 'icon-tag'
+#    group: news
+    inlineEditable: true

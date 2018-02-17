@@ -1,0 +1,36 @@
+'Nathr.News:Folder':
+  superTypes:
+    'Neos.Neos:Document': TRUE
+  ui:
+    label: 'News Folder'
+    icon: 'icon-folder-open'
+
+  constraints:
+    nodeTypes:
+      'Nathr.News:Category': TRUE
+      'Nathr.News:News': TRUE
+      'Nathr.News:Author': TRUE
+      'Nathr.News:Tags': TRUE
+
+  childNodes:
+    main:
+      type: 'Neos.Neos:ContentCollection'
+
+  properties:
+    title:
+      type: string
+      ui:
+        label: 'Folder Title'
+        inlineEditable: true
+        help:
+          message: 'i18n'
+        #inspector:
+        #  group: 'news'
+
+    description:
+      type: string
+      ui:
+        label: 'Feed description'
+        inlineEditable: true
+        inspector:
+          group: 'news'

@@ -1,0 +1,139 @@
+# Base Node
+'Nathr.News:AbstractNews':
+  abstract: TRUE
+  superTypes:
+    'Neos.Neos:Document': TRUE
+    'Neos.NodeTypes:Image': TRUE
+  constraints:
+    nodeTypes:
+      '*': false
+  childNodes:
+    main:
+      type: 'Neos.Neos:ContentCollection'
+  ui:
+    label: 'News Item'
+    icon: 'icon-star'
+#    group: 'news'
+    inspector:
+      tabs:
+        news:
+          label: 'News'
+          icon: 'icon-star'
+          position: 40
+      groups:
+        news:
+          label: 'News'
+          tab: news
+          position: 20
+        related:
+          label: 'Related'
+          tab: news
+  properties:
+    publishDate:
+      type: DateTime
+      defaultValue: 'now'
+      ui:
+        label: 'Creation date'
+        inspector:
+          group: news
+          position: 5
+          editorOptions:
+            format: 'd-m-Y H:i'
+      validation:
+        'Neos.Neos/Validation/DateTimeValidator': []
+    archiveDate:
+      type: DateTime
+      ui:
+        label: 'Archive date'
+        inspector:
+          group: news
+          position: 10
+          editorOptions:
+            format: 'd-m-Y H:i'
+      validation:
+        'Neos.Neos/Validation/DateTimeValidator': []
+    title:
+      type: string
+      ui:
+        inlineEditable: true
+        inspector:
+          group: news
+    important:
+      type: boolean
+      ui:
+        label: 'Important'
+        inspector:
+          group: news
+    teaser:
+      type: string
+      ui:
+        label: 'Teaser text'
+        inlineEditable: true
+        inspector:
+          group: news
+          editor: 'Neos.Neos/Inspector/Editors/TextAreaEditor'
+        aloha:
+          placeholder: 'Enter teaser here'
+          format:
+            b: true
+            i: true
+            u: false
+            sub: false
+            sup: false
+            p: true
+            h1: false
+            h2: false
+            h3: false
+            pre: false
+            removeFormat: false
+          table: {  }
+          list: {  }
+          link:
+            a: true
+          alignment: { }
+    categories:
+      type: references
+      ui:
+        label: 'Categories'
+        inspector:
+          group: 'related'
+          editorOptions:
+            nodeTypes: ['Nathr.News:Category']
+    author:
+      type: reference
+      ui:
+        label: 'Author'
+        inspector:
+          group: related
+          editorOptions:
+            nodeTypes: ['Nathr.News:Author']
+
+    related:
+      type: references
+      ui:
+        label: 'Related News'
+        inspector:
+          group: related
+          editorOptions:
+            nodeTypes: ['Nathr.News:AbstractNews']
+    tags:
+      type: references
+      ui:
+        label: 'Tags'
+        reloadIfChanged: FALSE
+        inspector:
+          group: related
+          editorOptions:
+            nodeTypes: ['Nathr.News:Tag']
+
+'Nathr.News:News':
+  superTypes:
+    'Nathr.News:AbstractNews': TRUE
+  ui:
+    label: 'News (normal)'
+
+'Nathr.News:ExternalNews':
+  superTypes:
+    'Nathr.News:AbstractNews': TRUE
+  ui:
+    label: 'News (external URL)'

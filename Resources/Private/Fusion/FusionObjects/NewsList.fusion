@@ -1,0 +1,3 @@
+prototype(Nathr.News:NewsList) < prototype(Neos.Fusion:Template) {
+
+}

@@ -1,0 +1,58 @@
+'Nathr.News:Author':
+  #label: "${String.stripTags(q(node).property('firstname'))}"
+  superTypes:
+   'Neos.Neos:Document': TRUE
+   'Neos.NodeTypes:ImageMixin': TRUE
+   'Neos.Seo:SeoMetaTagsMixin': FALSE
+   'Neos.Seo:TwitterCardMixin': FALSE
+   'Neos.Seo:CanonicalLinkMixin': FALSE
+   'Neos.Seo:OpenGraphMixin': FALSE
+   'Neos.Seo:XmlSitemapMixin': FALSE
+  constraints:
+    nodeTypes:
+      '*': false
+  ui:
+    label: 'News Author'
+    icon: 'icon-user'
+#    group: news
+    inlineEditable: true
+    inspector:
+      tabs:
+        news:
+          label: 'News'
+          icon: 'icon-star'
+          position: 40
+      groups:
+        author:
+          label: 'Author'
+          position: 15
+        contact:
+          label: 'Contact'
+          position: 15
+  childNodes:
+    main:
+      type: 'Neos.Neos:ContentCollection'
+  properties:
+    firstname:
+      type: string
+      ui:
+        label: 'Firstname'
+        inlineEditable: true
+        inspector:
+          group: author
+
+    lastname:
+      type: string
+      ui:
+        label: 'Lastname'
+        inlineEditable: true
+        inspector:
+          group: author
+
+    email:
+      type: string
+      ui:
+        label: 'Author email'
+        inlineEditable: true
+        inspector:
+          group: contact

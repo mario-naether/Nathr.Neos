@@ -1,0 +1,26 @@
+
+Neos:
+  Neos:
+    fusion:
+      autoInclude:
+        'Nathr.News': TRUE
+    nodeTypes:
+      groups:
+        news:
+          position: 300
+          label: News
+  ContentRepository:
+    userInterface:
+      #scrambleTranslatedLabels: true
+      defaultLanguage: 'en'
+      translation:
+        autoInclude:
+          Nathr.News:
+            - Main
+            - 'NodeTypes/*'
+  News:
+    format:
+      defaultDateFormat: 'd.m.Y'
+      defaultDateTimeFormat: 'd.m.Y H:s'
+    latest:
+      maximumNumberOfNews: 5

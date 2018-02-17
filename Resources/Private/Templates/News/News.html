@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+{namespace neos=Neos\Neos\ViewHelpers}
+{namespace fusion=Neos\Fusion\ViewHelpers}
+<html>
+<head>
+</head>
+<body>
+<f:section name="body">
+    <div class="news">
+        {neos:contentElement.editable(property: 'title')}
+        {neos:contentElement.editable(property: 'teaser')}
+        {content.main -> f:format.raw()}
+    </div>
+</f:section>
+</body>
+</html>

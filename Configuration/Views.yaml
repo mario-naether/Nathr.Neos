@@ -1,0 +1,4 @@
+-
+  requestFilter: 'isPackage("Neos.ContentRepository") && isSubPackage("ViewHelpers\Widget") && isController("Paginate") && isAction("index")'
+  options:
+    templatePathAndFilename: 'resource://Nathr.News/Private/Templates/ViewHelpers/Widget/Paginate/Index.html'

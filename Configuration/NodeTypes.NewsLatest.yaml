@@ -1,0 +1,36 @@
+'Nathr.News.NewsLatest':
+  superTypes:
+    'Neos.Neos:Plugin': true
+  ui:
+    label: 'News-Latest'
+    icon: 'icon-star'
+    group: news
+    inspector:
+      groups:
+        news:
+          position: 10
+
+  properties:
+    maximumNumberOfNews:
+      type: integer
+      ui:
+        label: 'Max number of News'
+        reloadIfChanged: true
+
+    category:
+      type: reference
+      ui:
+        label: 'Category'
+        reloadIfChanged: true
+        inspector:
+          editorOptions:
+            nodeTypes: ['Nathr.News:Category']
+
+    linkToAll:
+      type: reference
+      ui:
+        label: 'Link to News page'
+        reloadIfChanged: true
+        inspector:
+          editorOptions:
+            nodeTypes: ['Neos.Neos:Page']

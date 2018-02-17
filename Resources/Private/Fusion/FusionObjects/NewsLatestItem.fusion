@@ -1,0 +1,14 @@
+prototype(Nathr.News:NewsLatestListItem) < prototype(Neos.Fusion:Template) {
+    templatePath = 'resource://Nathr.News/Private/Templates/FusionObjects/NewsLatestItem.html'
+    sectionName = 'latestNews'
+
+    teaser = ${q(latestNews).property('teaser')}
+    publishDate = ${q(latestNews).property('publishDate')}
+    image = ${q(latestNews).property('image')}
+    category = ${q(q(latestNews).property('categories')).get()}
+    fisrtCategoryTitle = ${q(q(q(latestNews).property('categories')).first()).property('title')}
+
+    latestNews = ${q(latestNews).get(0)}
+
+    dateFormat = ${Configuration.setting('Nathr.News.format.defaultDateTimeFormat')}
+}

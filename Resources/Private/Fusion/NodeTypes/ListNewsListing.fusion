@@ -1,0 +1,43 @@
+prototype(Nathr.News:ListNewsListing) < prototype(Neos.Neos:Content) {
+
+    templatePath = ${q(node).property('templatePath') || 'resource://Nathr.News/Private/Templates/NodeTypes/ListNewsListing.html'}
+
+    @context.queryType  = ${q(node).property('mode')}
+    newsCollection = Neos.Fusion:Case {
+        getAll {
+            condition = ${queryType  == 'getAll'}
+            renderer = ${q(site).find('[instanceof Nathr.News:News]').sort('publishDate', 'DESC').get()}
+        }
+        getLatest {
+
+        }
+        getByTop {
+            condition = ${queryType  == 'getByTop'}
+            renderer = ${q(q(node).property('topNews')).get()}
+        }
+    }
+   # simpleCollection2 = ${q(site).find('[instanceof Nathr.News:News]').sort('publishDate', 'DESC').get()}
+   # simpleCollection.@process.filterByCategory = ${q(node).property('category') != null ? q(value).filterByReference('categories', q(node).property('category')) : value}
+
+    itemRenderer = Nathr.News:NewsListItem
+
+    paginationConfig = Neos.Fusion:RawArray {
+        itemsPerPage = ${q(node).property('itemsPerPage') || 10}
+    }
+
+    @cache {
+        mode = 'cached'
+        entryIdentifier {
+            node = ${node}
+            editPreviewMode = ${editPreviewMode}
+        }
+        entryTags {
+            1 = ${'Node_' + node.identifier}
+            2 = ${'Node_' + documentNode.identifier}
+            3 = ${'Node_' + rootNode.identifier}
+            4 = ${'DescendantOf_' + rootNode.identifier}
+        }
+    }
+    @cache.entryIdentifier.pagination = ${request.pluginArguments.listable-paginate.currentPage}
+
+}

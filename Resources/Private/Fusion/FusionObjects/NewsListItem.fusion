@@ -1,0 +1,20 @@
+prototype(Nathr.News:NewsListItem) < prototype(Neos.Fusion:Template) {
+    templatePath = 'resource://Nathr.News/Private/Templates/FusionObjects/NewsListItem.html'
+    sectionName = 'newsItem'
+
+    teaser = ${q(newsItem).property('teaser')}
+    publishDate = ${q(newsItem).property('publishDate')}
+    image = ${q(newsItem).property('image')}
+    category = ${q(q(newsItem).property('categories')).get()}
+    fisrtCategoryTitle = ${q(q(q(newsItem).property('categories')).first()).property('title')}
+
+    newsItem = ${q(newsItem).get(0)}
+    @context.iterator = ${q(iterator)}
+    iterator = ${q(iterator)}
+    isFirst = ${q(iterator)}
+
+    highlightFirst = ${q(node).property('highlightFirst')}
+
+
+    dateFormat = ${Configuration.setting('Nathr.News.format.defaultDateTimeFormat')}
+}

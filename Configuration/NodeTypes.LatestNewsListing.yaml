@@ -1,0 +1,48 @@
+'Nathr.News:LatestNewsListing':
+  superTypes:
+    'Neos.Neos:Content': true
+  ui:
+    label: 'News-Latest'
+    icon: 'icon-star'
+    group: news
+    inspector:
+      groups:
+        news:
+          label: 'News'
+          position: 10
+
+  properties:
+    headline:
+      type: string
+      ui:
+        label: 'Plugin Headline'
+        reloadIfChanged: true
+        inspector:
+          group: news
+
+    maximumNumberOfNews:
+      type: integer
+      defaultValue: 5
+      ui:
+        label: 'Max number of News'
+        reloadIfChanged: true
+        inspector:
+          group: news
+
+    category:
+      type: reference
+      ui:
+        label: 'Category'
+        reloadIfChanged: true
+        inspector:
+          group: news
+          editorOptions:
+            nodeTypes: ['Nathr.News:Category']
+
+    linkToAll:
+      type: string
+      ui:
+        label: 'Link to News page'
+        inspector:
+          group: news
+          editor: 'Neos.Neos/Inspector/Editors/LinkEditor'

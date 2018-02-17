@@ -1,0 +1,76 @@
+'Nathr.News:Category':
+  superTypes:
+    'Neos.Neos:Document': TRUE
+    'Neos.NodeTypes:ImageMixin': TRUE
+  constraints:
+    nodeTypes:
+      '*': FALSE
+
+  ui:
+    label: 'News Category'
+    icon: 'icon-envelope'
+    inspector:
+      tabs:
+        news:
+          label: 'News'
+          icon: 'icon-envelope'
+          position: 40
+      groups:
+        categoryNews:
+          label: 'News-Category'
+          tab: 'news'
+          icon: 'icon-envelope'
+          position: 10
+
+
+  properties:
+    'categoryDescription':
+      type: string
+      ui:
+        label: 'Category Description'
+        inspector:
+          group: categoryNews
+          editor: 'Neos.Neos/Inspector/Editors/TextAreaEditor'
+          editorOptions:
+            placeholder: "The category description"
+        aloha:
+          placeholder: i18n
+          autoparagraph: TRUE
+          'format':
+            'strong': TRUE
+            'em': TRUE
+            'u': FALSE
+            'sub': FALSE
+            'sup': FALSE
+            'del': FALSE
+            'p': TRUE
+            'h1': TRUE
+            'h2': TRUE
+            'h3': TRUE
+            'pre': TRUE
+            'removeFormat': TRUE
+          'table':
+            'table': TRUE
+          'list':
+            'ol': TRUE
+            'ul': TRUE
+          'link':
+            'a': TRUE
+
+#    'categoryHeadline':
+#      type: string
+#      ui:
+#        label: 'Category Headline'
+#        inlineEditable: TRUE
+#        inspector:
+#          group: categoryNews
+#          editorOptions:
+#            placeholder: "The category Headline"
+    tags:
+      type: references
+      ui:
+        label: 'Tags'
+        inspector:
+          group: 'categoryNews'
+          editorOptions:
+            nodeTypes: ['Nathr.News:Tag']

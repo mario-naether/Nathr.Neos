@@ -1,0 +1,26 @@
+{namespace neos=Neos\Neos\ViewHelpers}
+
+<div class="list-news-plugin" xmlns:f="http://www.w3.org/1999/html">
+    <section class="top-news sw">
+        <header>
+            <strong>
+                {headline}
+            </strong>
+        </header>
+
+        <ul class="content list">
+            <f:for each="{newsCollection}" as="news" iteration="iterator">
+                <li>
+                    <neos:link.node node="{news}" />
+                </li>
+            </f:for>
+        </ul>
+
+        <f:if condition="{linkToAll]">
+            <footer>
+                <neos:link.node node="{linkToAll}" >Alle Nachrichten</neos:link.node>
+            </footer>
+        </f:if>
+
+    </section>
+</div>

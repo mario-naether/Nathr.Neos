@@ -1,0 +1,124 @@
+up:
+  comments: 'Migrate from old news node to new node name.'
+  migration:
+    -
+      filters:
+        -
+          type: 'NodeType'
+          settings:
+            nodeType: 'Neos.News:Author'
+      transformations:
+        -
+          type: 'ChangeNodeType'
+          settings:
+            newType: 'Nathr.News:Author'
+
+    -
+      filters:
+        -
+          type: 'NodeType'
+          settings:
+            nodeType: 'Neos.News:Category'
+      transformations:
+        -
+          type: 'ChangeNodeType'
+          settings:
+            newType: 'Nathr.News:Category'
+
+    -
+      filters:
+        -
+          type: 'NodeType'
+          settings:
+            nodeType: 'Neos.News:Folder'
+      transformations:
+        -
+          type: 'ChangeNodeType'
+          settings:
+            newType: 'Nathr.News:Folder'
+
+    -
+      filters:
+        -
+          type: 'NodeType'
+          settings:
+            nodeType: 'Neos.News:LatestNewsListing'
+      transformations:
+        -
+          type: 'ChangeNodeType'
+          settings:
+            newType: 'Nathr.News:LatestNewsListing'
+
+    -
+      filters:
+        -
+          type: 'NodeType'
+          settings:
+            nodeType: 'Neos.News:ListNewsListing'
+      transformations:
+        -
+          type: 'ChangeNodeType'
+          settings:
+            newType: 'Nathr.News:ListNewsListing'
+
+    -
+      filters:
+        -
+          type: 'NodeType'
+          settings:
+            nodeType: 'Neos.News:AbstractNews'
+      transformations:
+        -
+          type: 'ChangeNodeType'
+          settings:
+            newType: 'Nathr.News:AbstractNews'
+    -
+      filters:
+        -
+          type: 'NodeType'
+          settings:
+            nodeType: 'Neos.News:News'
+      transformations:
+        -
+          type: 'ChangeNodeType'
+          settings:
+            newType: 'Nathr.News:News'
+
+    -
+      filters:
+        -
+          type: 'NodeType'
+          settings:
+            nodeType: 'Neos.News:ExternalNews'
+      transformations:
+        -
+          type: 'ChangeNodeType'
+          settings:
+            newType: 'Nathr.News:ExternalNews'
+    -
+      filters:
+        -
+          type: 'NodeType'
+          settings:
+            nodeType: 'Neos.News:NewsLatest'
+      transformations:
+        -
+          type: 'ChangeNodeType'
+          settings:
+            newType: 'Nathr.News:NewsLatest'
+
+    -
+      filters:
+        -
+          type: 'NodeType'
+          settings:
+            nodeType: 'Neos.News:Tag'
+      transformations:
+        -
+          type: 'ChangeNodeType'
+          settings:
+            newType: 'Nathr.News:Tag'
+
+
+down:
+  comments: 'No down migration available'

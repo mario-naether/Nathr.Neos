@@ -1,0 +1,38 @@
+
+include: FusionObjects/*.fusion
+include: NodeTypes/*.fusion
+
+prototype(Nathr.News:News) < prototype(Neos.Neos:Page) {
+}
+
+prototype(Nathr.News:News.Document) < prototype(Nathr.News:News) {
+	bodyTag.attributes.class = 'news'
+	body {
+		templatePath = 'resource://Neos:News.News/Private/Templates/Page/News.html'
+		sectionName = 'body'
+	}
+}
+
+prototype(Nathr.News:Category.Document) < prototype(Neos.Neos:Page) {
+	bodyTag.attributes.class = 'news'
+	body {
+		sectionName = 'body'
+		templatePath = 'resource://Nathr.News/Private/Templates/News/NewsCategory.html'
+
+		category = ${q(node).get(0)}
+		categoryTitle = ${q(node).property('title')}
+		newsCollection = Neos.Fusion:Collection {
+			collection = ${q(site).find('[instanceof Nathr.News:News]').filterByReference('categories', q(node).get(0)).get()}
+
+			itemName = 'newsItem'
+			itemRenderer = Nathr.News:NewsListItem
+		}
+	}
+}
+
+# Adjust caches for pagination
+root.@cache.entryIdentifier.pagination = ${request.pluginArguments.listable-paginate.currentPage}
+prototype(Neos.NodeTypes:Page).@cache.entryIdentifier.pagination = ${request.pluginArguments.listable-paginate.currentPage}
+prototype(Neos.Neos:Page).@cache.entryIdentifier.pagination = ${request.pluginArguments.listable-paginate.currentPage}
+prototype(Neos.Neos:ContentCollection).@cache.entryIdentifier.pagination = ${request.pluginArguments.listable-paginate.currentPage}
+prototype(Nathr.News:ListNewsListing).@cache.entryIdentifier.pagination = ${request.pluginArguments.listable-paginate.currentPage}

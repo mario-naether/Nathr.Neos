@@ -1,0 +1,89 @@
+'Nathr.News:ListNewsListing':
+  superTypes:
+    'Neos.Neos:Content': true
+  ui:
+    label: 'News-List'
+    icon: 'icon-star'
+    group: news
+    inspector:
+      groups:
+        news:
+          label: 'News'
+          position: 10
+
+  properties:
+    headline:
+      type: string
+      ui:
+        label: 'Plugin Headline'
+        reloadIfChanged: true
+        inspector:
+          group: news
+
+    mode:
+      type: string
+      defaultValue: 'getAll'
+      ui:
+        label: 'Mode'
+        reloadIfChanged: TRUE
+        inspector:
+          position: 10
+          group: 'news'
+          editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
+          editorOptions:
+            values:
+              'getAll':
+                label: 'getAll'
+              'getRootNode':
+                label: 'i18n'
+              'getImportant':
+                label: 'i18n'
+              'getByCategory':
+                label: 'i18n'
+              'getLatest':
+                label: 'i18n'
+              'getByTop':
+                label: 'Top-News'
+
+    itemsPerPage:
+      type: integer
+      ui:
+        label: 'Items per Page'
+        reloadIfChanged: true
+        inspector:
+          group: news
+
+    topNews:
+      type: references
+      ui:
+        label: 'Top News'
+        reloadIfChanged: true
+        inspector:
+          group: news
+          editorOptions:
+            nodeTypes:
+              - 'Nathr.News:News'
+
+    templatePath:
+      type: string
+      ui:
+        label: 'Template Path'
+        reloadIfChanged: true
+        inspector:
+          group: news
+
+    linkToAll:
+      type: string
+      ui:
+        label: 'Link to News page'
+        inspector:
+          group: news
+          editor: 'Neos.Neos/Inspector/Editors/LinkEditor'
+
+    highlightFirst:
+      type: boolean
+      ui:
+        label: 'Highlight first news in list'
+        reloadIfChanged: true
+        inspector:
+          group: news

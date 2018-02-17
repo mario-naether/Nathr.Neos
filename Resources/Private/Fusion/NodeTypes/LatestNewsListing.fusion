@@ -1,0 +1,15 @@
+prototype(Nathr.News:LatestNewsListing) < prototype(Neos.Neos:Content) {
+    templatePath = 'resource://Nathr.News/Private/Templates/NodeTypes/LatestNewsListing.html'
+
+    headline = ${q(node).property('headline')}
+
+    latestNews = Neos.Fusion:Collection {
+        collection = ${q(site).find('[instanceof Nathr.News:News]').sort('publishDate', 'DESC').slice(0, q(node).property('maximumNumberOfNews')? q(node).property('maximumNumberOfNews') : Configuration.setting('Nathr.News.latest.maximumNumberOfNews')).get()}
+        collection.@process.filterByCategory = ${q(node).property('category') != null ? q(value).filterByReference('categories', q(node).property('category')) : value}
+#        collection.@process.slide = ${q(value).slice(0, q(node).property('maximumNumberOfNews')? q(node).property('maximumNumberOfNews') : Configuration.setting('Nathr.News.latest.maximumNumberOfNews'))}        itemName = 'latestNews'
+
+
+        itemName = 'newsItem'
+        itemRenderer = Nathr.News:NewsListItem
+    }
+}

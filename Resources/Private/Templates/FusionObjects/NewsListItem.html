@@ -1,0 +1,33 @@
+{namespace neos=Neos\Neos\ViewHelpers}
+<f:section name="newsItem" >
+    <li>
+        <f:comment>
+            {f:if(condition:'{iterator.context.isFirst}',then: 'highlight')}
+            <f:debug>{highlightFirst}</f:debug>
+        </f:comment>
+
+        <neos:link.node node="{newsItem}" class=" {f:if(condition:'{iterator.context.isFirst} && {highlightFirst}',then: 'highlight')}">
+            <f:if condition="{iterator.context.isFirst}">
+
+                <f:then>
+                    <neos.media:image image="{image}" class="news-img" alt="{title}" width="300" height="200" />
+                </f:then>
+                <f:else>
+                    <neos.media:image image="{image}" class="news-img" alt="{title}" width="150" height="90" />
+                </f:else>
+            </f:if>
+
+            <article class="news-article">
+                <header>
+                    <h3 class="news-title">
+                        {newsItem.properties.title}
+                    </h3>
+                    <span class="news-date">{publishDate -> f:format.date(format: '{dateFormat}')}&nbsp;|&nbsp;{newsItem.properties.categories.0.properties.title}</span>
+                </header>
+                <p class="news-content">
+                    {teaser -> f:format.raw()}
+                </p>
+            </article>
+        </neos:link.node>
+    </li>
+</f:section>
