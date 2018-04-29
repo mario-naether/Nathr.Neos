@@ -18,6 +18,7 @@ Neos:
           Nathr.News:
             - Main
             - 'NodeTypes/*'
+Nathr:
   News:
     format:
       defaultDateFormat: 'd.m.Y'
