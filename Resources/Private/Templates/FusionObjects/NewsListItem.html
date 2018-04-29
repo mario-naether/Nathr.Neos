@@ -7,7 +7,7 @@
         </f:comment>
 
         <neos:link.node node="{newsItem}" class=" {f:if(condition:'{iterator.context.isFirst} && {highlightFirst}',then: 'highlight')}">
-            <f:if condition="{iterator.context.isFirst}">
+            <f:if condition="{iterator.context.isFirst} && {highlightFirst}">
 
                 <f:then>
                     <neos.media:image image="{image}" class="news-img" alt="{title}" width="300" height="200" />
