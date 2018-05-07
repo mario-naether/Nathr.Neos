@@ -3,7 +3,7 @@
   abstract: TRUE
   superTypes:
     'Neos.Neos:Document': TRUE
-    'Neos.NodeTypes:Image': TRUE
+    'Neos.NodeTypes:ContentImageMixin': TRUE
   constraints:
     nodeTypes:
       '*': false

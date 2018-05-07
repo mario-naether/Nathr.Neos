@@ -2,13 +2,10 @@
 include: FusionObjects/*.fusion
 include: NodeTypes/*.fusion
 
-prototype(Nathr.News:News) < prototype(Neos.Neos:Page) {
-}
-
-prototype(Nathr.News:News.Document) < prototype(Nathr.News:News) {
+prototype(Nathr.News:News.Document) < prototype(Neos.Neos:Page) {
 	bodyTag.attributes.class = 'news'
 	body {
-		templatePath = 'resource://Neos:News.News/Private/Templates/Page/News.html'
+		templatePath = 'resource://Nathr.News/Private/Templates/News/News.html'
 		sectionName = 'body'
 	}
 }
