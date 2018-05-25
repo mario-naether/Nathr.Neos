@@ -17,5 +17,11 @@
                     </f:for>
                 </ul>
             </neoscr:widget.paginate>
+        <f:if condition="{linkToAll}">
+            <footer>
+                <neos:link.node node="{linkToAll}" >Alle Nachrichten</neos:link.node>
+            </footer>
+        </f:if>
+
     </section>
 </div>
