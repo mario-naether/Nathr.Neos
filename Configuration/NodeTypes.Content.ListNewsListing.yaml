@@ -73,7 +73,7 @@
           group: news
 
     linkToAll:
-      type: string
+      type: references
       ui:
         label: 'Link to News page'
         inspector:

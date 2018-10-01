@@ -40,9 +40,10 @@
             nodeTypes: ['Nathr.News:Category']
 
     linkToAll:
-      type: string
+      type: reference
       ui:
         label: 'Link to News page'
+        reloadIfChanged: true
         inspector:
           group: news
           editor: 'Neos.Neos/Inspector/Editors/LinkEditor'
