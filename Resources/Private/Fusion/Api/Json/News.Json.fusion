@@ -1,0 +1,68 @@
+
+##
+# For APIs
+# Render News as Json Object
+#
+prototype(Nathr.News:News.Json) < prototype(Neos.Fusion:Http.Message) {
+    httpResponseHead {
+        headers = Neos.Fusion:RawArray {
+            Content-Type = 'application/json'
+        }
+    }
+
+    output = Nathr.News:NewsJsonObject
+    output.@process.renderAsJSON = ${Json.stringify(value)}
+}
+
+prototype(Nathr.News:NewsJsonObject) < prototype(Neos.Fusion:RawArray) {
+    id = ${q(node).property('_identifier')}
+    title = ${q(node).property('title')}
+    node = ${q(node).property('_nodeType.name')}
+
+    publishDate = ${Date.format(q(node).property('publishDate'), Configuration.setting('Nathr.News.format.defaultDateTimeFormat'))}
+    archiveDate = ${Date.format(q(node).property('archiveDate'), Configuration.setting('Nathr.News.format.defaultDateTimeFormat'))}
+    important = ${q(node).property('important')}
+    teaser = ${q(node).property('teaser')}
+
+    categories = Neos.Fusion:RawCollection {
+        collection = ${q(node).property('categories')}
+        itemName = 'newsCategory'
+        itemRenderer = Neos.Fusion:RawArray {
+            id = ${q(newsCategory).property('_identifier')}
+            title = ${q(newsCategory).property('title')}
+            uriHTML = Neos.Neos:NodeUri {
+                node = ${newsCategory}
+                absolute = true
+                format = 'html'
+            }
+        }
+    }
+    author = ${q(q(node).property('author')).first().property('title')}
+    related = Neos.Fusion:RawCollection {
+        collection = ${q(node).property('related')}
+        itemName = 'newsRelated'
+        itemRenderer = Neos.Fusion:RawArray {
+            title = ${q(newsRelated).property('title')}
+            id = ${q(newsRelated).property('_identifier')}
+            uriHTML = Neos.Neos:NodeUri {
+                node = ${newsRelated}
+                absolute = true
+                format = 'html'
+            }
+        }
+    }
+
+    tags = Neos.Fusion:RawCollection {
+        collection = ${q(node).property('tags')}
+        itemName = 'newsTags'
+        itemRenderer = Neos.Fusion:RawArray {
+            title = ${q(newsTags).property('title')}
+            id = ${q(newsTags).property('_identifier')}
+            uriHTML = Neos.Neos:NodeUri {
+                node = ${newsTags}
+                absolute = true
+                format = 'html'
+            }
+        }
+    }
+}

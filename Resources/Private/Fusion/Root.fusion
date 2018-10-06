@@ -1,6 +1,7 @@
 
 include: FusionObjects/*.fusion
 include: NodeTypes/*.fusion
+include: Api/Json/*.fusion
 
 prototype(Nathr.News:News.Document) < prototype(Neos.Neos:Page) {
 	bodyTag.attributes.class = 'news'

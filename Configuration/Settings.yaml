@@ -1,5 +1,9 @@
-
 Neos:
+  Flow:
+    mvc:
+      routes:
+        'Nathr.News':
+          position: 'start'
   Neos:
     fusion:
       autoInclude:
