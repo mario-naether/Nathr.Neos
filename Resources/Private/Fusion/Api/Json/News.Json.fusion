@@ -5,7 +5,7 @@
 #
 prototype(Nathr.News:News.Json) < prototype(Neos.Fusion:Http.Message) {
     httpResponseHead {
-        headers = Neos.Fusion:RawArray {
+        headers = Neos.Fusion:DataStructure {
             Content-Type = 'application/json'
         }
     }
@@ -14,7 +14,7 @@ prototype(Nathr.News:News.Json) < prototype(Neos.Fusion:Http.Message) {
     output.@process.renderAsJSON = ${Json.stringify(value)}
 }
 
-prototype(Nathr.News:NewsJsonObject) < prototype(Neos.Fusion:RawArray) {
+prototype(Nathr.News:NewsJsonObject) < prototype(Neos.Fusion:DataStructure) {
     id = ${q(node).property('_identifier')}
     title = ${q(node).property('title')}
     node = ${q(node).property('_nodeType.name')}
@@ -24,10 +24,10 @@ prototype(Nathr.News:NewsJsonObject) < prototype(Neos.Fusion:RawArray) {
     important = ${q(node).property('important')}
     teaser = ${q(node).property('teaser')}
 
-    categories = Neos.Fusion:RawCollection {
-        collection = ${q(node).property('categories')}
+    categories = Neos.Fusion:Map {
+        items = ${q(node).property('categories')}
         itemName = 'newsCategory'
-        itemRenderer = Neos.Fusion:RawArray {
+        itemRenderer = Neos.Fusion:DataStructure {
             id = ${q(newsCategory).property('_identifier')}
             title = ${q(newsCategory).property('title')}
             uriHTML = Neos.Neos:NodeUri {
@@ -38,10 +38,10 @@ prototype(Nathr.News:NewsJsonObject) < prototype(Neos.Fusion:RawArray) {
         }
     }
     author = ${q(q(node).property('author')).first().property('title')}
-    related = Neos.Fusion:RawCollection {
-        collection = ${q(node).property('related')}
+    related = Neos.Fusion:Map {
+        items = ${q(node).property('related')}
         itemName = 'newsRelated'
-        itemRenderer = Neos.Fusion:RawArray {
+        itemRenderer = Neos.Fusion:DataStructure {
             title = ${q(newsRelated).property('title')}
             id = ${q(newsRelated).property('_identifier')}
             uriHTML = Neos.Neos:NodeUri {
@@ -52,10 +52,10 @@ prototype(Nathr.News:NewsJsonObject) < prototype(Neos.Fusion:RawArray) {
         }
     }
 
-    tags = Neos.Fusion:RawCollection {
-        collection = ${q(node).property('tags')}
+    tags = Neos.Fusion:Map {
+        items = ${q(node).property('tags')}
         itemName = 'newsTags'
-        itemRenderer = Neos.Fusion:RawArray {
+        itemRenderer = Neos.Fusion:DataStructure {
             title = ${q(newsTags).property('title')}
             id = ${q(newsTags).property('_identifier')}
             uriHTML = Neos.Neos:NodeUri {

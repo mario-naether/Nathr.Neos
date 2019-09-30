@@ -21,7 +21,7 @@ prototype(Nathr.News:ListNewsListing) < prototype(Neos.Neos:Content) {
 
     itemRenderer = Nathr.News:NewsListItem
 
-    paginationConfig = Neos.Fusion:RawArray {
+    paginationConfig = Neos.Fusion:DataStructure {
         itemsPerPage = ${q(node).property('itemsPerPage') || 10}
     }
 

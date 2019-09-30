@@ -2,8 +2,8 @@ prototype(Nathr.News:NewsLatest) < prototype(Neos.Fusion:Template) {
     templatePath = 'resource://Nathr.News/Private/Templates/FusionObjects/NewsLatest.html'
     sectionName = 'latestNews'
 
-    latestNews = Neos.Fusion:Collection {
-        collection = ${q(site).find('[instanceof Nathr.News:News]').sort('publishDate').slice(0, Configuration.setting('Nathr.News.latest.maximumNumberOfNews')).get()}
+    latestNews = Neos.Fusion:Loop {
+        items = ${q(site).find('[instanceof Nathr.News:News]').sort('publishDate').slice(0, Configuration.setting('Nathr.News.latest.maximumNumberOfNews')).get()}
         itemName = 'latestNews'
         itemRenderer = Nathr.News:NewsLatestListItem
     }

@@ -19,8 +19,8 @@ prototype(Nathr.News:Category.Document) < prototype(Neos.Neos:Page) {
 
 		category = ${q(node).get(0)}
 		categoryTitle = ${q(node).property('title')}
-		newsCollection = Neos.Fusion:Collection {
-			collection = ${q(site).find('[instanceof Nathr.News:News]').filterByReference('categories', q(node).get(0)).get()}
+		newsCollection = Neos.Fusion:Loop {
+			items = ${q(site).find('[instanceof Nathr.News:News]').filterByReference('categories', q(node).get(0)).get()}
 
 			itemName = 'newsItem'
 			itemRenderer = Nathr.News:NewsListItem
