@@ -1,6 +1,7 @@
 prototype(Nathr.News:ListNewsListing) < prototype(Neos.Neos:Content) {
 
     templatePath = ${q(node).property('templatePath') || 'resource://Nathr.News/Private/Templates/NodeTypes/ListNewsListing.html'}
+    headline = ${q(node).property('headline')}
 
     @context.queryType  = ${q(node).property('mode')}
     newsCollection = Neos.Fusion:Case {
